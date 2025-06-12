@@ -12,16 +12,26 @@
   </form>
   <pre id="response"></pre>
   <script>
+    const form = document.getElementById('form');
     let API_ENDPOINT = localStorage.API_ENDPOINT;
     if(!API_ENDPOINT) {
       API_ENDPOINT = prompt('Enter API endpoint');
       localStorage.API_ENDPOINT = API_ENDPOINT;
     }
-    const form = document.getElementById('form');
+    if(localStorage.system_prompt) {
+      form.elements.system_prompt.value = localStorage.system_prompt;
+    }
+    
+    if(localStorage.message) {
+      form.elements.system_prompt.value = localStorage.message;
+    }
+    
     const responseElm = document.getElementById('response');
     form.addEventListener('submit', async () => {
       const systemPrompt = form.elements.system_prompt.value;
       const message = form.elements.message.value;
+      localStorage.system_prompt = systemPrompt;
+      localStorage.message = message;
       const req = await fetch(API_ENDPOINT, {
         method: 'POST',
         body: JSON.stringify({
