@@ -27,7 +27,7 @@
         body: JSON.stringify({
           systemPrompt,
           message,
-        });
+        }),
       });
       const resp = await req.json();
       responseElm.innerHTML = JSON.stringify(resp);
