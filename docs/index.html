@@ -16,7 +16,7 @@
     let API_ENDPOINT = localStorage.API_ENDPOINT;
     if(!API_ENDPOINT) {
       API_ENDPOINT = prompt('Enter API endpoint');
-      localStorage.API_ENDPOINT = API_ENDPOINT;
+      if(API_ENDPOINT) localStorage.API_ENDPOINT = API_ENDPOINT;
     }
     if(localStorage.system_prompt) {
       form.elements.system_prompt.value = localStorage.system_prompt;
