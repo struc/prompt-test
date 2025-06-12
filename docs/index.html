@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>
+      #main {
+        display: flex;
+        flex-direction: row;
+      }
+      #main textarea {
+        flex: 1;
+        min-width: 50%;
+      }
+    </style>
   </head>
   <body>
   <h2>Prompt Test</h2>
   <form id="form">
-    <div style="display: flex; flex-direction: row">
+    <div id="main">
       <textarea id="system_prompt"></textarea>
       <textarea id="message"></textarea>
     </div>
