@@ -23,6 +23,7 @@
   <body>
   <h2>Prompt Test</h2>
   <form id="form">
+    <fieldset id="fieldset">
     <div id="main">
       <textarea id="system_prompt" placeholder="System"></textarea>
       <textarea id="message" placeholder="message"></textarea>
@@ -30,10 +31,12 @@
     <div>
       <button type="submit">Submit</button>
     </div>
+      </fieldset>
   </form>
   <pre id="response"></pre>
   <script>
     const form = document.getElementById('form');
+    const fieldset = document.getElementById('fieldset');
     let API_ENDPOINT = localStorage.API_ENDPOINT;
     if(!API_ENDPOINT) {
       API_ENDPOINT = prompt('Enter API endpoint');
@@ -49,6 +52,7 @@
     
     const responseElm = document.getElementById('response');
     form.addEventListener('submit', async (e) => {
+      fieldset.disabled = true;
       e.preventDefault();
       const systemPrompt = form.elements.system_prompt.value;
       const message = form.elements.message.value;
@@ -63,6 +67,7 @@
       });
       const resp = await req.json();
       responseElm.innerHTML = JSON.stringify(resp);
+      fieldset.disabled = false;
     });
   </script>
   </body>
