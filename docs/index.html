@@ -1,8 +1,37 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    
   </head>
   <body>
-    <h2>Hello</h2>
+  <h2>Prompt Test</h2>
+  <form id="form">
+    <div style="display: flex; flex-direction: row">
+      <textarea id="system_prompt"></textarea>
+      <textarea id="message"></textarea>
+    </div>
+  </form>
+  <pre id="response"></pre>
+  <script>
+    let API_ENDPOINT = localStorage.API_ENDPOINT;
+    if(API_ENDPOINT) {
+      API_ENDPOINT = prompt('Enter API endpoint');
+      localStorage.API_ENDPOINT = API_ENDPOINT;
+    }
+    const form = document.getElementById('form');
+    const responseElm = document.getElementById('response');
+    form.addEventListener('submit', async () => {
+      const systemPrompt = form.elements.system_prompt.value;
+      const message = form.elements.message.value;
+      const req = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        body: JSON.stringify({
+          systemPrompt,
+          message,
+        });
+      });
+      const resp = await req.json();
+      responseElm.innerHTML = JSON.stringify(resp);
+    });
+  </script>
   </body>
-</html>
+<
