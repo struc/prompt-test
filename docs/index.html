@@ -43,7 +43,8 @@
     }
     
     const responseElm = document.getElementById('response');
-    form.addEventListener('submit', async () => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
       const systemPrompt = form.elements.system_prompt.value;
       const message = form.elements.message.value;
       localStorage.system_prompt = systemPrompt;
