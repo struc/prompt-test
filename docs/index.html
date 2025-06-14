@@ -95,7 +95,7 @@
       const resp = await req.json();
       responseElm.innerHTML = '';
       for(const k in resp) {
-        responseElm.innerHTML += `<h2>${k}</h2>\n`;
+        responseElm.innerHTML += `<h2>${k}</h2>`;
         responseElm.innerHTML += `<code>${JSON.stringify(resp[k])}</code>\n`;
         //responseElm.innerHTML = JSON.stringify(resp, null, 2);
       }
