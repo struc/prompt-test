@@ -16,6 +16,10 @@
       .flex {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .gap-3 {
+        gap: 3rem;
       }
       pre {
         max-width: 90vw;
@@ -33,7 +37,7 @@
       <textarea id="system_prompt" placeholder="System"></textarea>
       <textarea id="message" placeholder="message"></textarea>
     </div>
-    <div id="models-list">
+    <div id="models-list" class="flex">
     </div>
     <div>
       <button type="submit">Submit</button>
@@ -87,8 +91,8 @@
       for(const m of models) {
         const mElm = document.createElement('label');
         mElm.innerHTML = `
-        <span>${m}</span>
         <input type="checkbox" name="${m}" />
+                <span>${m}</span>
         `;
         modelsListElm.appendChild(mElm);
       }
