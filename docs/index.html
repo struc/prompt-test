@@ -24,7 +24,7 @@
       label {
         min-width: 20%;
       }
-      pre {
+      #response {
         max-width: 90vw;
         white-space: break-spaces;
         font-size: 1.2rem;
@@ -47,7 +47,7 @@
     </div>
       </fieldset>
   </form>
-  <pre id="response"></pre>
+  <div id="response"></div>
   <script>
     const form = document.getElementById('form');
     const modelsListElm = document.getElementById('models-list');
@@ -96,7 +96,7 @@
       responseElm.innerHTML = '';
       for(const k in resp) {
         responseElm.innerHTML += `<h2>${k}</h2>`;
-        responseElm.innerHTML += `<code>${JSON.stringify(resp[k])}</code>\n`;
+        responseElm.innerHTML += `<pre>${JSON.stringify(resp[k], null, 2)}</pre>\n`;
         //responseElm.innerHTML = JSON.stringify(resp, null, 2);
       }
       fieldset.disabled = false;
