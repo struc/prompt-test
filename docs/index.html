@@ -78,7 +78,7 @@
       e.preventDefault();
       const models = [];
       for(const m of modelsListElm.querySelectorAll('input[type=checkbox]')) {
-        if(m.checked) models.push(a.name);
+        if(m.checked) models.push(m.name);
       }
       const systemPrompt = form.elements.system_prompt.value;
       const message = form.elements.message.value;
