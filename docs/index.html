@@ -97,7 +97,7 @@
     async function fetchModels() {
       fetch(API_ENDPOINT, {
         method: 'POST',
-        body: JSON.STRINGIFY({
+        body: JSON.stringify({
           method: 'getModels',
         }),
       }).then(a => a.json())
