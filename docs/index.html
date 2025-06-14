@@ -13,7 +13,10 @@
         min-height: 40vh;
         padding: 0.5rem 1rem;
       }
-
+      .flex {
+        display: flex;
+        flex-direction: row;
+      }
       pre {
         max-width: 90vw;
         white-space: break-spaces;
@@ -30,6 +33,8 @@
       <textarea id="system_prompt" placeholder="System"></textarea>
       <textarea id="message" placeholder="message"></textarea>
     </div>
+    <div id="models-list">
+    </div>
     <div>
       <button type="submit">Submit</button>
     </div>
@@ -38,11 +43,16 @@
   <pre id="response"></pre>
   <script>
     const form = document.getElementById('form');
+    const modelsListElm = document.getElementById('models-list');
+    let models = [];
     const fieldset = document.getElementById('fieldset');
     let API_ENDPOINT = localStorage.API_ENDPOINT;
     if(!API_ENDPOINT) {
       API_ENDPOINT = prompt('Enter API endpoint');
-      if(API_ENDPOINT) localStorage.API_ENDPOINT = API_ENDPOINT;
+      if(API_ENDPOINT) {
+        localStorage.API_ENDPOINT = API_ENDPOINT;
+        fetchModels();
+      }
     }
     if(localStorage.system_prompt) {
       form.elements.system_prompt.value = localStorage.system_prompt;
@@ -71,6 +81,28 @@
       responseElm.innerHTML = JSON.stringify(resp, null, 2);
       fieldset.disabled = false;
     });
+
+    function setModels(models) {
+      
+      for(const m of models) {
+        const mElm = document.createElement('label');
+        mElm.innerHTML = `
+        <span>${m}</span>
+        <input type="checkbox" name="${m}" />
+        `;
+        modelsListElm.appendChild(mElm);
+      }
+    }
+    
+    async function fetchModels() {
+      fetch(API_ENDPOINT, {
+        method: 'POST',
+        body: JSON.STRINGIFY({
+          method: 'getModels',
+        }),
+      }).then(a => a.json())
+      .then(setModels);
+    }
   </script>
   </body>
 </html>
