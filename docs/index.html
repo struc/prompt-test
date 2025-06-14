@@ -76,6 +76,10 @@
     form.addEventListener('submit', async (e) => {
       fieldset.disabled = true;
       e.preventDefault();
+      const models = [];
+      for(const m of modelsListElm.querySelectorAll('input[type=checkbox]')) {
+        if(m.checked) models.push(a.name);
+      }
       const systemPrompt = form.elements.system_prompt.value;
       const message = form.elements.message.value;
       localStorage.system_prompt = systemPrompt;
@@ -85,6 +89,7 @@
         body: JSON.stringify({
           systemPrompt,
           message,
+          models,
         }),
       });
       const resp = await req.json();
