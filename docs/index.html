@@ -21,6 +21,9 @@
       .gap-3 {
         gap: 3rem;
       }
+      label {
+        min-width: 20%;
+      }
       pre {
         max-width: 90vw;
         white-space: break-spaces;
@@ -37,7 +40,7 @@
       <textarea id="system_prompt" placeholder="System"></textarea>
       <textarea id="message" placeholder="message"></textarea>
     </div>
-    <div id="models-list" class="flex">
+    <div id="models-list" class="flex gap-2">
     </div>
     <div>
       <button type="submit">Submit</button>
