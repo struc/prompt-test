@@ -58,8 +58,11 @@
       API_ENDPOINT = prompt('Enter API endpoint');
       if(API_ENDPOINT) {
         localStorage.API_ENDPOINT = API_ENDPOINT;
-        fetchModels();
+     
       }
+    }
+    if(API_ENDPOINT) {
+         fetchModels();
     }
     if(localStorage.system_prompt) {
       form.elements.system_prompt.value = localStorage.system_prompt;
