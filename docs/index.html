@@ -95,8 +95,8 @@
       const resp = await req.json();
       responseElm.innerHTML = '';
       for(const k in resp) {
-        responseElm.innerHTML += `<h2>${k}</h2>`;
-        responseElm.innerHTML += `<pre>${JSON.stringify(resp[k], null, 2)}</pre>\n`;
+        responseElm.innerHTML += `<div><h2>${k}</h2>`;
+        responseElm.innerHTML += `<pre>${JSON.stringify(resp[k], null, 2)}</pre></div>`;
         //responseElm.innerHTML = JSON.stringify(resp, null, 2);
       }
       fieldset.disabled = false;
