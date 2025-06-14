@@ -93,7 +93,12 @@
         }),
       });
       const resp = await req.json();
-      responseElm.innerHTML = JSON.stringify(resp, null, 2);
+      responseElm.innerHTML = '';
+      for(const k in resp) {
+        responseElm.innerHTML += `<h2>${k}</h2>\n`;
+        responseElm.innerHTML += `<code>${JSON.stringify(resp[k])}</code>\n`;
+        //responseElm.innerHTML = JSON.stringify(resp, null, 2);
+      }
       fieldset.disabled = false;
     });
 
